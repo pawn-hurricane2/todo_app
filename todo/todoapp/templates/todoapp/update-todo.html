@@ -6,6 +6,7 @@
 </head>
 <body>
     <form action="/todoapp/edit-todo-task/{{item.id}}/" method="post">
+      {% csrf_token %}
   <label>Title:</label>
 <!--  <input type="text" name="title" style="height:80px; width:400px"><br><br>-->
   <textarea name="title" cols="40" rows="3">{{item.title}}</textarea>
