@@ -16,6 +16,10 @@ class RegisteredUsers(models.Model):
     def is_authenticated(self):
         return True
 
+    @property
+    def is_active(self):
+        return True
+
 
 class Todo(models.Model):
     user_id = models.IntegerField()
