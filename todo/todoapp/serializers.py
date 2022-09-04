@@ -9,7 +9,6 @@ class CreateTodoSerializer(serializers.Serializer):
     detail = serializers.CharField(required=False)
 
     def create(self, validated_data):
-        # import ipdb;ipdb.set_trace()
         validated_data["user_id"] = self.context["request"].user.id
         instance = Todo.objects.create(**validated_data)
         return instance

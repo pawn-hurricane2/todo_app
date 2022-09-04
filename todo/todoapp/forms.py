@@ -38,7 +38,6 @@ class RegistrationForm(forms.Form):
         return self.cleaned_data
 
     def save(self):
-        # import ipdb;ipdb.set_trace()
         self.cleaned_data.pop("confirm_password")
         password = self.cleaned_data["password"]
         hashed_password = make_password(password=password)
@@ -90,7 +89,6 @@ class ProfilePageForm(forms.Form):
             return self.cleaned_data["cell_phone"]
 
     def save(self, user):
-        # import ipdb;ipdb.set_trace()
         updated_name = self.cleaned_data.get("name")
         updated_cell_phone = self.cleaned_data.get("cell_phone")
         updated_email = self.cleaned_data.get("email")

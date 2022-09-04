@@ -1,4 +1,3 @@
-import ipdb
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 
@@ -62,12 +61,10 @@ class HomePageView(LoginRequiredMixin, ListView):
     context_object_name = "todo_lists"
 
     def get_queryset(self):
-        # import ipdb;ipdb.set_trace()
         todo_lists = Todo.objects.filter(user_id=self.kwargs.get("user_id"))
         return todo_lists
 
     def get_context_data(self, *, object_list=None, **kwargs):
-        # import ipdb;ipdb.set_trace()
         context = super().get_context_data()
         context.update({"user_id": self.kwargs.get("user_id")})
         return context
@@ -96,11 +93,9 @@ class DeleteTodoTask(DestroyAPIView):
     lookup_url_kwarg = "list_id"
 
     def get_queryset(self):
-        # import ipdb;ipdb.set_trace()
         return Todo.objects.filter(user_id=self.request.user.id)
 
     def get(self, request, *args, **kwargs):
-        # import ipdb;ipdb.set_trace()
         super(DeleteTodoTask, self).delete(request, *args, **kwargs)
         return redirect(reverse("homepage", kwargs={"user_id": self.request.user.id}))
 
@@ -109,7 +104,6 @@ class CreateTodoView(TemplateView):
     template_name = "todoapp/create-todo.html"
 
     def get_context_data(self, **kwargs):
-        # import ipdb;ipdb.set_trace()
         context = super().get_context_data(**kwargs)
         context.update({"user_id": kwargs.get("user_id")})
         return context
